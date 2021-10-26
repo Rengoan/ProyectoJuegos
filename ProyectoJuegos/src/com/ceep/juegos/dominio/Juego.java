@@ -9,18 +9,34 @@ public class Juego {
     private double precio;
     private String plataforma;
     private String anio;
+    private double precioActual;
+    private double total;
+    private double diferencia;
+    private int cantidad;
     
     //Contructores
 
     public Juego() {
+        
     }
 
-    public Juego(String titulo, String tipo, double precio, String plataforma, String anio) {
+    public Juego(String titulo, String tipo, double precio, String plataforma, String anio, double precioActual, double total, double diferencia, int cantidad) {
+        this();
+        this.titulo = titulo;
         this.tipo = tipo;
         this.precio = precio;
         this.plataforma = plataforma;
         this.anio = anio;
+        this.precioActual = precioActual;
+        this.total = precioActual * cantidad;
+        this.diferencia = precio - precioActual;
+        this.cantidad = cantidad;
+       
     }
+
+    
+
+    
     
     //Getter and Setters
 
@@ -63,6 +79,40 @@ public class Juego {
     public void setAnio(String anio) {
         this.anio = anio;
     }
+
+    public double getPrecioActual() {
+        return precioActual;
+    }
+
+    public void setPrecioActual(double precioActual) {
+        this.precioActual = precioActual;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
+    }
+
+    public double getDiferencia() {
+        return diferencia;
+    }
+
+    public void setDiferencia(double diferencia) {
+        this.diferencia = diferencia;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    
     
     
     
