@@ -34,6 +34,10 @@ public class Juego {
        
     }
 
+    public Juego(String lectura) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     
 
     
