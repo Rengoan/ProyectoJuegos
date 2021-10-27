@@ -1,49 +1,30 @@
-
 package com.ceep.juegos.dominio;
 
-
 public class Juego {
-    
+
     private String titulo;
     private String tipo;
     private double precio;
     private String plataforma;
     private String anio;
-    private double precioActual;
-    private double total;
-    private double diferencia;
     private int cantidad;
-    
-    //Contructores
 
+    //Contructores
     public Juego() {
-        
+
     }
 
-    public Juego(String titulo, String tipo, double precio, String plataforma, String anio, double precioActual, double total, double diferencia, int cantidad) {
+    public Juego(String titulo, String tipo, double precio, String plataforma, String anio, int cantidad) {
         this();
         this.titulo = titulo;
         this.tipo = tipo;
         this.precio = precio;
         this.plataforma = plataforma;
         this.anio = anio;
-        this.precioActual = precioActual;
-        this.total = precioActual * cantidad;
-        this.diferencia = precio - precioActual;
         this.cantidad = cantidad;
-       
     }
 
-    public Juego(String lectura) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    
-
-    
-    
     //Getter and Setters
-
     public String getTitulo() {
         return titulo;
     }
@@ -84,30 +65,6 @@ public class Juego {
         this.anio = anio;
     }
 
-    public double getPrecioActual() {
-        return precioActual;
-    }
-
-    public void setPrecioActual(double precioActual) {
-        this.precioActual = precioActual;
-    }
-
-    public double getTotal() {
-        return total;
-    }
-
-    public void setTotal(double total) {
-        this.total = total;
-    }
-
-    public double getDiferencia() {
-        return diferencia;
-    }
-
-    public void setDiferencia(double diferencia) {
-        this.diferencia = diferencia;
-    }
-
     public int getCantidad() {
         return cantidad;
     }
@@ -116,9 +73,12 @@ public class Juego {
         this.cantidad = cantidad;
     }
 
-    
-    
-    
-    
-    
+    //toString
+    @Override
+    public String toString() {
+        return "titulo= " + titulo + ", tipo= " + tipo
+                + ", precio= " + precio + ", plataforma= " + plataforma
+                + ", año= " + anio + ", cantidad= " + cantidad + '}';
+    }
+
 }

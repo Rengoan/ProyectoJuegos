@@ -9,6 +9,12 @@ import java.util.List;
 
 public interface IAccesoDatos {
     
+    
+    
+    
+    // Comprueba si el fichero existe 
+    boolean existe(String nombreArchivo);
+    
     // Lista todas los juegos contenidos en el archivo nombreArchivo
     List<Juego> listar(String nombreArchivo) throws LecturaDatosEx;
     
@@ -27,6 +33,9 @@ public interface IAccesoDatos {
     
     // Borra el archivo
     void borrar(String nombreArchivo);
+    
+
+    
     
     
 }
