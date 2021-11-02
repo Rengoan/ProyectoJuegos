@@ -27,6 +27,7 @@ public class AccesoDatos implements IAccesoDatos {
     public List<Juego> listar(String nombreArchivo  ) throws LecturaDatosEx {
         var archivo = new File(nombreArchivo);
         List<Juego> juegos = new ArrayList<>();
+ 
         
         
         try {

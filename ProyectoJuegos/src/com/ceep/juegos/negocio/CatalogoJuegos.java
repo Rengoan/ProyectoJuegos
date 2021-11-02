@@ -15,7 +15,7 @@ public class CatalogoJuegos implements IACatalogoJuegos {
 
     
     
-    public CatalogoJuegos(IAccesoDatos datos) {
+    public CatalogoJuegos() {
         this.datos = new AccesoDatos();
     }
 
