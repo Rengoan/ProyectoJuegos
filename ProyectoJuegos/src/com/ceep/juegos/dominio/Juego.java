@@ -24,6 +24,7 @@ public class Juego {
         this.cantidad = cantidad;
     }
 
+
     //Getter and Setters
     public String getTitulo() {
         return titulo;

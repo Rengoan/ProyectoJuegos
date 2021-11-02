@@ -28,6 +28,7 @@ public class AccesoDatos implements IAccesoDatos {
         var archivo = new File(nombreArchivo);
         List<Juego> juegos = new ArrayList<>();
         
+        
         try {
             // entrada es el descriptor de lectura
             var entrada = new BufferedReader(new FileReader(archivo));
