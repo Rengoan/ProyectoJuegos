@@ -41,15 +41,15 @@ public class Principal {
                 case 2:
                     System.out.println("Introduce el titulo del juego a agregar: ");
                     nombreJuego = lectura.nextLine();
-                    System.out.println("Introduce el tipo juego a agregar: ");
+                    System.out.println("Introduce el tipo de juego: ");
                     tipoJuego = lectura.nextLine();
-                    System.out.println("Introduce el precio del juego a agregar: ");
+                    System.out.println("Introduce el precio: ");
                     precio = lectura.nextDouble();
-                    System.out.println("Introduce la plataforma del juego a agregar: ");
+                    System.out.println("Introduce la plataforma: ");
                     plataforma = lectura.next();
-                    System.out.println("Introduce el año del juego a agregar: ");
+                    System.out.println("Introduce el año del juego: ");
                     anio = lectura.next();
-                    System.out.println("Introduce la cantidad del juego a agregar: ");
+                    System.out.println("Introduce la cantidad de copias: ");
                     cantidad = lectura.nextInt();
                     catalogo.agregarJuego(nombreJuego, tipoJuego, precio, plataforma, anio, cantidad, nombreCatalogo);
                     System.out.println("Se ha agregado el juego " + nombreJuego + " al " + nombreCatalogo);

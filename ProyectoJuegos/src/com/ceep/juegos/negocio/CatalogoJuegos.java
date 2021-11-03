@@ -11,7 +11,7 @@ import java.util.*;
 
 public class CatalogoJuegos implements IACatalogoJuegos {
     
-    private  final IAccesoDatos datos;
+    private  final IAccesoDatos datos; //Se utiliza para acceder a la capa de datos
 
     
     
@@ -76,6 +76,18 @@ public class CatalogoJuegos implements IACatalogoJuegos {
             ex.printStackTrace(System.out);
             System.out.println("Error al inicializar el catalogo de juegos");
         }
+    }
+    
+    public double maximo(double precio){
+        double maximo = 0;
+        
+        if (precio > maximo) {
+            maximo = precio;
+            
+        }
+        
+        return maximo;
+        
     }
     
 }

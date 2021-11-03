@@ -1,31 +1,49 @@
 package com.ceep.juegos.dominio;
 
-public class Juego {
+import java.util.Date;
 
+public class Juego {
+    
+    private int id;
     private String titulo;
     private String tipo;
     private double precio;
     private String plataforma;
-    private String anio;
-    private int cantidad;
+    private Date anio;
+    private static int contador = 0;
 
     //Contructores
     public Juego() {
-
+        this.id = Juego.contador++;
     }
 
-    public Juego(String titulo, String tipo, double precio, String plataforma, String anio, int cantidad) {
+    public Juego(String titulo, String tipo, double precio, String plataforma, Date anio) {
         this();
         this.titulo = titulo;
         this.tipo = tipo;
         this.precio = precio;
         this.plataforma = plataforma;
         this.anio = anio;
-        this.cantidad = cantidad;
     }
+
+    public Juego(int id, String titulo, String tipo, double precio, String plataforma, Date anio) {
+        this.id = id;
+        this.titulo = titulo;
+        this.tipo = tipo;
+        this.precio = precio;
+        this.plataforma = plataforma;
+        this.anio = anio;
+    }
+    
+    
 
 
     //Getter and Setters
+
+    public int getId() {
+        return id;
+    }
+
     public String getTitulo() {
         return titulo;
     }
@@ -58,28 +76,34 @@ public class Juego {
         this.plataforma = plataforma;
     }
 
-    public String getAnio() {
+    public Date getAnio() {
         return anio;
     }
 
-    public void setAnio(String anio) {
+    public void setAnio(Date anio) {
         this.anio = anio;
     }
 
-    public int getCantidad() {
-        return cantidad;
+
+    public static int getContador() {
+        return contador;
     }
 
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
+    public static void setContador(int contador) {
+        Juego.contador = contador;
     }
 
-//    //toString
-//    @Override
-//    public String toString() {
-//        return "titulo= " + titulo + ", tipo= " + tipo
-//                + ", precio= " + precio + ", plataforma= " + plataforma
-//                + ", año= " + anio + ", cantidad= " + cantidad + '}';
-//    }
+    
+    //toString
 
+    @Override
+    public String toString() {
+        return "Juego{" + "id=" + id + ", titulo=" + titulo +
+                ", tipo=" + tipo + ", precio=" + precio + ", plataforma=" + plataforma +
+                ", anio=" + anio +'}';
+    }
+    
+    
+    
+    
 }

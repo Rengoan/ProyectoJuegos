@@ -21,18 +21,27 @@ public interface IAccesoDatos {
     // Escribe un nuevo juego en el archivo nombreArchivo
     // con el parámetro anexar podemos indicar si queremos agregar el juego o
     // sobreescribir
-    void escribir(Juego juego, String nombreArchivo, boolean anexar) 
+    void escribir(Juego juego, String nombreArchivo) 
             throws EscrituraDatosEx;
     
     // Busca la expresión de buscar en el archivo y nos muestra un mensaje en
     // caso de que lo encuentro o no
-    String buscar(String nombreArchivo, String buscar) throws LecturaDatosEx;
+    int buscar(String nombreArchivo, String buscar) throws LecturaDatosEx;
     
     // Crea el archivo
     void crear(String nombreArchivo) throws AccesoDatosEx;
     
     // Borra el archivo
     void borrar(String nombreArchivo);
+    
+    //Borrar juego
+    void borrarJuego(String nombreArchivo, String titulo) throws AccesoDatosEx;
+    
+//    int CalcularTotalPrecio(String nombreArchivo);
+//    
+//    int contadorJuegos(String nombreArchivo);
+//    
+//    int maxPrecioJuego(String nombreArchivo);
     
 
     
