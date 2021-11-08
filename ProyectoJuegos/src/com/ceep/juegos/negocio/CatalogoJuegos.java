@@ -7,6 +7,11 @@ import com.ceep.juegos.dominio.Juego;
 import com.ceep.juegos.excepciones.AccesoDatosEx;
 import com.ceep.juegos.excepciones.EscrituraDatosEx;
 import com.ceep.juegos.excepciones.LecturaDatosEx;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.*;
 
 public class CatalogoJuegos implements IACatalogoJuegos {
@@ -20,74 +25,118 @@ public class CatalogoJuegos implements IACatalogoJuegos {
     }
 
 
-    
-    
-
     @Override
-    public void agregarJuego(String titulo, String tipo, double precio, String plataforma, String anio, int cantidad ,String nombreCatalogo) {
-       try {
-            if (this.datos.existe(nombreCatalogo)) {
-                this.datos.escribir(new Juego(titulo, tipo, precio, plataforma, anio, cantidad),nombreCatalogo,true);
-            } else {
-                System.out.println("Catálogo no inicilizado");
+    public double CalcularTotalPrecio(String nombreArchivo) throws LecturaDatosEx {
+        File archivo = new File(nombreArchivo);
+//        Juego juegoN = null;
+         double total = 0.0;
+        String[] juego = new String[5]; //(id, Titulo,tipo,precio,plataforma,anio,cantidad)
+//        List<Juego> juegos = new ArrayList<>();
+
+        try {
+
+            BufferedReader entrada = new BufferedReader(new FileReader(archivo));// entrada es el descriptor de lectura
+            String lectura = entrada.readLine();// nos devuelve una línea de nuestro archivo
+            //Lectura = "id";"titulo";"tipo";"precio";"plataforma";"anio";
+            while ((lectura = entrada.readLine()) != null) { // hasta null
+                juego = lectura.split(";"); //Lectura = "id";"titulo";"tipo";"precio";"plataforma";"anio";"cantidad";
+                total += Double.parseDouble(juego[3]);
+                // Creamos un objeto de Juego con cada línea del archivo
+                // Añado cada juego a mi listado de juegos
+//                juegoN = new Juego(Integer.parseInt(juego[0]), juego[1],
+//                        juego[2], Double.parseDouble(juego[3]),
+//                        juego[4], formatoFecha.parse(juego[5]));
+//                juegos.add(juegoN);
+                // Avanzamos en la lectura
+                lectura = entrada.readLine();
             }
-        } catch (EscrituraDatosEx ex) {
-            System.out.println("Error al escribir en el catálogo");
-            ex.printStackTrace(System.out);
-        }
+            entrada.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace(System.out);
+            throw new LecturaDatosEx("Error de lectura listando los juegos");
+        } catch (IOException e) {
+            e.printStackTrace(System.out);
+            throw new LecturaDatosEx("Error de lectura listando los juegos");
+        } 
+        return total;
     }
 
     @Override
-    public void listarJuego(String nombreCatalogo) {
-        List<Juego> juegos = new ArrayList<>();
-        
-        try{
-            juegos = this.datos.listar(nombreCatalogo);
-            juegos.forEach(juego ->{
-                System.out.println(juego);
-            });
-        }catch(LecturaDatosEx ex){
-            System.out.println("Error leyendo el catalogo");
-            ex.printStackTrace(System.out);
-        }
-            
-    }
+    public int contadorJuegos(String nombreArchivo) throws LecturaDatosEx {
+        File archivo = new File(nombreArchivo);
+//        Juego juegoN = null;
+         int total = 0;
+//        String[] juego = new String[5]; //(id, Titulo,tipo,precio,plataforma,anio,cantidad)
+//        List<Juego> juegos = new ArrayList<>();
 
-    @Override
-    public void buscarJuego(String nombreCatalogo, String buscar) {
-        try{
-            System.out.println(this.datos.buscar(nombreCatalogo, buscar));
-        }catch(LecturaDatosEx ex){
-            ex.printStackTrace(System.out);
-        }
-    }
+        try {
 
-    @Override
-    public void iniciarCatalogo(String nombreCatalogo) {
-        try{
-            if (this.datos.existe(nombreCatalogo)) {
-                this.datos.borrar(nombreCatalogo);
-                this.datos.crear(nombreCatalogo);
-                
-            }else {
-                this.datos.crear(nombreCatalogo);
+            BufferedReader entrada = new BufferedReader(new FileReader(archivo));// entrada es el descriptor de lectura
+            String lectura = entrada.readLine();// nos devuelve una línea de nuestro archivo
+            //Lectura = "id";"titulo";"tipo";"precio";"plataforma";"anio";
+            while ((lectura = entrada.readLine()) != null) { // hasta null
+//                juego = lectura.split(";"); //Lectura = "id";"titulo";"tipo";"precio";"plataforma";"anio";"cantidad";
+                total += 1;
+                // Creamos un objeto de Juego con cada línea del archivo
+                // Añado cada juego a mi listado de juegos
+//                juegoN = new Juego(Integer.parseInt(juego[0]), juego[1],
+//                        juego[2], Double.parseDouble(juego[3]),
+//                        juego[4], formatoFecha.parse(juego[5]));
+//                juegos.add(juegoN);
+                // Avanzamos en la lectura
+                lectura = entrada.readLine();
             }
-        }catch(AccesoDatosEx ex){
-            ex.printStackTrace(System.out);
-            System.out.println("Error al inicializar el catalogo de juegos");
-        }
+            entrada.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace(System.out);
+            throw new LecturaDatosEx("Error de lectura listando los juegos");
+        } catch (IOException e) {
+            e.printStackTrace(System.out);
+            throw new LecturaDatosEx("Error de lectura listando los juegos");
+        } 
+        return total;
     }
-    
-    public double maximo(double precio){
-        double maximo = 0;
-        
-        if (precio > maximo) {
-            maximo = precio;
-            
-        }
-        
-        return maximo;
-        
+
+    @Override
+    public double maxPrecioJuego(String nombreArchivo)throws LecturaDatosEx {
+         File archivo = new File(nombreArchivo);
+//        Juego juegoN = null;
+         double max = 0.0;
+        String[] juego = new String[5]; //(id, Titulo,tipo,precio,plataforma,anio,cantidad)
+//        List<Juego> juegos = new ArrayList<>();
+
+        try {
+
+            BufferedReader entrada = new BufferedReader(new FileReader(archivo));// entrada es el descriptor de lectura
+            String lectura= null;
+            //Lectura = "id";"titulo";"tipo";"precio";"plataforma";"anio";
+            while ((lectura = entrada.readLine()) != null) { // hasta null
+                juego = lectura.split(";"); //Lectura = "id";"titulo";"tipo";"precio";"plataforma";"anio";"cantidad";
+                // Creamos un objeto de Juego con cada línea del archivo
+                // Añado cada juego a mi listado de juegos
+                if (Double.parseDouble(juego[3]) >max) {
+                    max = Double.parseDouble(juego[3]);
+                    
+                }
+//                juegoN = new Juego(Integer.parseInt(juego[0]), juego[1],
+//                        juego[2], Double.parseDouble(juego[3]),
+//                        juego[4], formatoFecha.parse(juego[5]));
+//                juegos.add(juegoN);
+                // Avanzamos en la lectura
+//                lectura = entrada.readLine();
+            }
+            entrada.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace(System.out);
+            throw new LecturaDatosEx("Error de lectura listando los juegos");
+        } catch (IOException e) {
+            e.printStackTrace(System.out);
+            throw new LecturaDatosEx("Error de lectura listando los juegos");
+        } 
+        return max;
     }
     
 }

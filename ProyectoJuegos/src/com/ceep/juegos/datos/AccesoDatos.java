@@ -69,9 +69,9 @@ public class AccesoDatos implements IAccesoDatos {
         try {
             PrintWriter salida = new PrintWriter(new FileWriter(archivo, true)); //Para agregar una nueva linea
             //Formato de cada linea del fichero es: id;titulo,tipo;precio;plataforma;anio;
-            String game =juegos.getId()+";"+juegos.getTitulo()+";"+
-                    juegos.getTipo()+";"+juegos.getPrecio()+";"+
-                    juegos.getPlataforma()+";"+juegos.getAnio()+";";
+            String game = juegos.getId() + ";" + juegos.getTitulo() + ";"
+                    + juegos.getTipo() + ";" + juegos.getPrecio() + ";"
+                    + juegos.getPlataforma() + ";" + juegos.getAnio() + ";";
             salida.println(game);
             salida.close();
         } catch (IOException ex) {
@@ -80,19 +80,23 @@ public class AccesoDatos implements IAccesoDatos {
         }
     }
 
+    //1. Busqueda en todos los campos
+    //2. Busqueda especificando el campo por el que se quiere buscar
+    //3. Busquedas que contengan el termino
     @Override
+    //Busqueda simple
     public int buscar(String nombreArchivo, String titulo) throws LecturaDatosEx {
         File archivo = new File(nombreArchivo);
-        String [] juego = new String [5];
+        String[] juego = new String[5];
         int cont = 1;
         try {
             // entrada es el descriptor de lectura
             BufferedReader entrada = new BufferedReader(new FileReader(archivo));
             // nos devuelve una línea de nuestro archivo
             String lectura = entrada.readLine();
-            while (lectura != null) { 
-                juego= lectura.split(";");
-                if (titulo.equalsIgnoreCase(juego [1])) { //id;titulo,tipo;precio
+            while (lectura != null) {
+                juego = lectura.split(";");
+                if (titulo.equalsIgnoreCase(juego[1])) { //id;titulo,tipo;precio
                     //;plataforma;anio; Ya que vamos a buscar por titulo es la posicion 1 del array
                     break;
                 }
@@ -123,17 +127,51 @@ public class AccesoDatos implements IAccesoDatos {
     }
 
     @Override
-    public void borrar(String nombreArchivo) {
+    public String borrar(String nombreArchivo) {
         File archivo = new File(nombreArchivo);
-        if (archivo.exists()) {
+        String msg = "";
+        if (existe(nombreArchivo)) {
             archivo.delete();
+            msg = "Archivo borrado con exito";
+        } else {
+            msg = "No se ha podido borrar el archivo ya que no existe";
         }
-        System.out.println("Se ha borrado el archivo");
+        return msg;
     }
 
     @Override
-    public void borrarJuego(String nombreArchivo, String titulo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void borrarJuego(String nombreArchivo, String titulo) throws AccesoDatosEx {
+        File archivoOri = new File(nombreArchivo);
+        File archivoBackup = new File("temp.txt");
+
+        String[] juego = new String[5];
+
+        try {
+            BufferedReader entrada = new BufferedReader(new FileReader(archivoOri));
+            PrintWriter salida = new PrintWriter(new FileWriter(archivoBackup));
+            String lectura = null;
+
+            while ((lectura = entrada.readLine()) != null) {
+                juego = lectura.split(";");
+                if (juego[1] != titulo) {
+                    salida.println(juego);
+
+                }
+            }
+            entrada.close();
+            salida.close();
+
+            if (existe(nombreArchivo)) {
+                borrar(nombreArchivo);
+            }
+
+            archivoBackup.renameTo(archivoOri);
+
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace(System.out);
+        } catch (IOException ex) {
+            ex.printStackTrace(System.out);
+        }
     }
 
 }

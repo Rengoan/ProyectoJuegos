@@ -32,16 +32,12 @@ public interface IAccesoDatos {
     void crear(String nombreArchivo) throws AccesoDatosEx;
     
     // Borra el archivo
-    void borrar(String nombreArchivo);
+    String borrar(String nombreArchivo);
     
     //Borrar juego
     void borrarJuego(String nombreArchivo, String titulo) throws AccesoDatosEx;
     
-//    int CalcularTotalPrecio(String nombreArchivo);
-//    
-//    int contadorJuegos(String nombreArchivo);
-//    
-//    int maxPrecioJuego(String nombreArchivo);
+    
     
 
     

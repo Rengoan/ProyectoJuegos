@@ -1,18 +1,13 @@
 package com.ceep.juegos.negocio;
 
+import com.ceep.juegos.excepciones.LecturaDatosEx;
+
 public interface IACatalogoJuegos {
     
-    // Agrega una Película al catálogo
-    void agregarJuego(String titulo, String tipo, double precio, String plataforma, String anio, int cantidad , String nombreCatalogo);
     
-    // Mostrar todas los juegos del catálogo
-    void listarJuego(String nombreCatalogo);
+    double CalcularTotalPrecio(String nombreArchivo) throws LecturaDatosEx;
     
-    // Busca el juego "Buscar" en nuestro catálogo
-    void buscarJuego(String nombreCatalogo, String buscar);
+    int contadorJuegos(String nombreArchivo)throws LecturaDatosEx;
     
-    // Nos inicia nuestro catálogo
-    void iniciarCatalogo(String nombreCatalogo);
-    
-    double maximo(double precio);
+    double maxPrecioJuego(String nombreArchivo)throws LecturaDatosEx;
 }
