@@ -126,4 +126,31 @@ public class CatalogoJuegos implements IACatalogoJuegos {
         return "";
     }
 
+    @Override
+    public String listarJuegos(String nombreArchivo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String mostrarID(String nombreArchivo, int id) {
+        List<Juego> juegos = new ArrayList<>();
+ 
+        try {
+            juegos = this.datos.listar(nombreArchivo);
+
+            for (int i = 0; i < juegos.size(); i++) {
+                if (juegos.get(i).getId() == id) {
+                    juegos.get(i).toString();
+                    break;
+                }
+            }
+
+        } catch (LecturaDatosEx ex) {
+            ex.printStackTrace(System.out);
+
+        }
+        return nombreArchivo;
+    
+    }
+
 }

@@ -9,7 +9,7 @@ public interface IACatalogoJuegos {
     //Post-condicion: Crear un nuevo recurso
     String inicializarCatalogo(String nombreArchivo);
     
-    String listarArticulos(String nombreArchivo);
+    String listarJuegos(String nombreArchivo);
     
     void agregarJuego(String nombreArchivo, Juego juego);
     
@@ -24,4 +24,7 @@ public interface IACatalogoJuegos {
     String borrarCatalogo(String nombreArchivo);
     
     String borrarJuego(String nombreArchivo,String nombreJuego);
+    
+    String mostrarID(String nombreArchivo,int id);
+    
 }
